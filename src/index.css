@@ -161,70 +161,23 @@
 
   .rf-choice.ant-radio-wrapper {
     position: relative;
-    /* agar radio bisa di-pos absolute */
-    display: block !important;
+    display: block;
     width: 100%;
-    margin: 0 !important;
-    cursor: pointer;
-  }
-
-  /* kartu visual */
-  .rf-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px 56px 16px 16px;
-    /* right lebih besar untuk ruang radio */
-    border: 1px solid #E6E6E6;
-    border-radius: 12px;
-    background: #fff;
-    width: 100%;
-  }
-
-  /* ikon kiri */
-  .rf-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    border: 1px solid #E6E6E6;
-    background: #F4F4FB;
-    display: grid;
-    place-items: center;
-    flex: 0 0 48px;
-  }
-
-  /* teks */
-  .rf-title {
-    font-weight: 600;
-    color: #4F46E5;
-    line-height: 1.2;
-    margin-bottom: 4px;
-  }
-
-  .rf-desc {
-    color: #6B7280;
-  }
-
-  /* posisikan radio AntD di dalam kartu bagian kanan-atas (sejajar title) */
-  .rf-choice .ant-radio {
-    position: absolute;
-    right: 18px;
-    /* align kanan kartu */
-    top: 18px;
-    /* sejajar baris title */
     margin: 0;
   }
 
-  /* hover efek tipis */
-  .rf-choice:hover .rf-card {
-    border-color: #4F46E5;
+  /* bulatan radio pindah ke kanan-atas kartu */
+  .rf-choice .ant-radio {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    margin: 0;
   }
 
-  /* state checked */
-  .rf-choice.ant-radio-wrapper-checked .rf-card {
-    border-color: #4F46E5 !important;
-    background: #F9F9FD !important;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, .20) inset;
+  /* biar span konten (card) melebar penuh */
+  .rf-choice .ant-radio+span {
+    display: block;
+    width: 100%;
   }
 }
 
