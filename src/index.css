@@ -1,0 +1,321 @@
+/* Import reset AntD duluan */
+@import 'antd/dist/reset.css';
+
+@layer components {
+
+  /* Base (UNchecked) */
+  .rf-radio .ant-radio-button-wrapper.rf-pill {
+    @apply h-auto py-3 px-4 rounded-[12px];
+    background: #ffffff !important;
+    border: 1px solid #E6E6E6 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  .rf-radio .ant-radio-button-wrapper.rf-pill .anticon {
+    color: #000000 !important;
+  }
+
+  /* Hilangkan separator default antar Radio.Button */
+  .rf-radio .ant-radio-button-wrapper.rf-pill::before {
+    display: none !important;
+  }
+
+  /* Checked */
+  .rf-radio .ant-radio-button-wrapper-checked.rf-pill,
+  .rf-radio .ant-radio-button-wrapper-checked.rf-pill:not(.ant-radio-button-wrapper-disabled) {
+    background: #F2F2FD !important;
+    border-color: #4F46E5 !important;
+    color: #4F46E5 !important;
+    box-shadow: none !important;
+  }
+
+  .rf-radio .ant-radio-button-wrapper-checked.rf-pill .anticon {
+    color: #4F46E5 !important;
+  }
+
+  /* Hover (opsional) */
+  .rf-radio .ant-radio-button-wrapper.rf-pill:hover {
+    border-color: #4F46E5 !important;
+  }
+
+
+
+  /* CASE 1: Input biasa (tanpa prefix/suffix) */
+  .rf-input.ant-input {
+    padding-block: 16px !important;
+    /* top & bottom */
+    padding-inline: 32px !important;
+    /* left & right */
+    border-radius: 12px !important;
+    border: 1px solid #E6E6E6 !important;
+    height: auto !important;
+    /* biar ikut padding */
+  }
+
+  /* CASE 2: Input dengan affix wrapper (jaga-jaga kalau nanti dipakai) */
+  .rf-input.ant-input-affix-wrapper {
+    border-radius: 12px !important;
+    border: 1px solid #E6E6E6 !important;
+    padding: 0 !important;
+    /* padding pindah ke inner input */
+    height: auto !important;
+    box-shadow: none !important;
+  }
+
+  .rf-input.ant-input-affix-wrapper .ant-input {
+    padding-block: 16px !important;
+    padding-inline: 32px !important;
+  }
+
+  /* (Opsional) Focus ring enak */
+  .rf-input.ant-input:focus,
+  .rf-input.ant-input-affix-wrapper-focused {
+    border-color: #4F46E5 !important;
+  }
+
+  .rf-btn-primary.ant-btn,
+  .rf-btn-primary.ant-btn-primary {
+    height: auto !important;
+    padding: 16px 12px !important;
+    /* T:16 / L:12 */
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+
+    background: #4F46E5 !important;
+    border-color: #4F46E5 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .rf-btn-primary.ant-btn:hover,
+  .rf-btn-primary.ant-btn-primary:hover {
+    background: #4338CA !important;
+    border-color: #4338CA !important;
+  }
+
+  .rf-btn-primary.ant-btn:active,
+  .rf-btn-primary.ant-btn-primary:active {
+    background: #3730A3 !important;
+    border-color: #3730A3 !important;
+  }
+
+  .rf-btn-primary.ant-btn:disabled,
+  .rf-btn-primary.ant-btn-primary:disabled {
+    background: #A5B4FC !important;
+    border-color: #A5B4FC !important;
+    color: #ffffff !important;
+  }
+
+  /* ==========================
+     DEFAULT BUTTON
+     ========================== */
+  .rf-btn-default.ant-btn,
+  .rf-btn-default.ant-btn-default {
+    height: auto !important;
+    padding: 16px 12px !important;
+    /* T:16 / L:12 */
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+
+    background: #ffffff !important;
+    border: 1px solid #4F46E5 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  .rf-btn-default.ant-btn .anticon,
+  .rf-btn-default.ant-btn-default .anticon {
+    color: #000000 !important;
+  }
+
+  .rf-btn-default.ant-btn:hover,
+  .rf-btn-default.ant-btn-default:hover {
+    background: #f7f7ff !important;
+    border-color: #4F46E5 !important;
+    color: #000000 !important;
+  }
+
+  .rf-btn-default.ant-btn:active,
+  .rf-btn-default.ant-btn-default:active {
+    background: #efeffe !important;
+    border-color: #4338CA !important;
+    color: #000000 !important;
+  }
+
+  .rf-btn-default.ant-btn:disabled,
+  .rf-btn-default.ant-btn-default:disabled {
+    background: #ffffff !important;
+    border-color: #E6E6E6 !important;
+    color: #A3A3A3 !important;
+  }
+
+  .rf-avatar-initials.ant-avatar {
+    /* radial gradient #4F46E5 → #837CFF */
+    background-image: radial-gradient(100% 100% at 30% 30%, #4F46E5 0%, #837CFF 100%) !important;
+    color: #ffffff !important;
+    /* teks inisial putih */
+    font-weight: 600 !important;
+    /* biar inisial lebih tegas */
+  }
+
+  .rf-choice.ant-radio-wrapper {
+    position: relative;
+    /* agar radio bisa di-pos absolute */
+    display: block !important;
+    width: 100%;
+    margin: 0 !important;
+    cursor: pointer;
+  }
+
+  /* kartu visual */
+  .rf-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 56px 16px 16px;
+    /* right lebih besar untuk ruang radio */
+    border: 1px solid #E6E6E6;
+    border-radius: 12px;
+    background: #fff;
+    width: 100%;
+  }
+
+  /* ikon kiri */
+  .rf-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid #E6E6E6;
+    background: #F4F4FB;
+    display: grid;
+    place-items: center;
+    flex: 0 0 48px;
+  }
+
+  /* teks */
+  .rf-title {
+    font-weight: 600;
+    color: #4F46E5;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .rf-desc {
+    color: #6B7280;
+  }
+
+  /* posisikan radio AntD di dalam kartu bagian kanan-atas (sejajar title) */
+  .rf-choice .ant-radio {
+    position: absolute;
+    right: 18px;
+    /* align kanan kartu */
+    top: 18px;
+    /* sejajar baris title */
+    margin: 0;
+  }
+
+  /* hover efek tipis */
+  .rf-choice:hover .rf-card {
+    border-color: #4F46E5;
+  }
+
+  /* state checked */
+  .rf-choice.ant-radio-wrapper-checked .rf-card {
+    border-color: #4F46E5 !important;
+    background: #F9F9FD !important;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, .20) inset;
+  }
+}
+
+/* Aktifkan Tailwind v4 */
+@import 'tailwindcss';
+
+/* (opsional) Theme Tailwind v4 via CSS */
+@theme {
+  --color-primary: #1677ff;
+  /* selaras token AntD */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* util kecil */
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+:root {
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 40px;
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
