@@ -9,9 +9,6 @@ import step1Image from '../assets/step1.png'
 import step2Image from '../assets/step2.png'
 const { Title, Paragraph, Text } = Typography
 
-/* =========================================================
-   Konfigurasi konten kiri per step (judul, deskripsi, slot bawah)
-   ========================================================= */
 const STEP_LEFT = {
   1: {
     logoText: 'BLOCKFORGEX',
@@ -20,7 +17,7 @@ const STEP_LEFT = {
       'Join Blockforgex and explore a range of roles in the fast-growing blockchain and crypto industry. Start your journey with a simple application process.',
     bottom: {
       type: 'image',
-      src: step1Image, // atau image: step1Image
+      src: step1Image,
       alt: 'Blockforgex hero',
     },
   },
@@ -32,7 +29,7 @@ const STEP_LEFT = {
       'Help us tailor the opportunities and contracts to suit your profile — whether you’re an independent freelancer or representing a company.',
     bottom: {
       type: 'image',
-      src: step2Image, // ganti ke aset yang kamu mau
+      src: step2Image,
       alt: 'Business type illustration',
     },
   },
@@ -77,7 +74,6 @@ const STEP_LEFT = {
     bottom: {
       type: 'cta',
       text: 'Create more impact with a full-time commitment',
-      // boleh ganti ke ilustrasi sendiri
       illustration:
         'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120"><rect width="160" height="120" rx="18" fill="%23EEF2FF"/><circle cx="60" cy="70" r="26" fill="%23E9D5FF"/><circle cx="96" cy="54" r="18" fill="%23DDD6FE"/></svg>',
     },
@@ -118,7 +114,6 @@ const STEP_LEFT = {
 function LeftBottom({ cfg }) {
   if (!cfg) return null
 
-  // === Image-only slot (step 1 & 2)
   if (cfg.type === 'image' || cfg.src || cfg.image) {
     const src = cfg.src || cfg.image
     if (!src) return null
@@ -127,14 +122,14 @@ function LeftBottom({ cfg }) {
         <img
           src={src}
           alt={cfg.alt || ''}
-          className="w-full h-auto rounded-xl object-contain"
+          className="w-full h-auto rounded-xl object-contain max-h-[320px]"  // 🔹 batasi tinggi
           loading="lazy"
         />
       </div>
     )
   }
 
-  // === Cluster (chips, bisa tambahkan gambar opsional juga kalau mau)
+
   if (cfg.type === 'cluster') {
     const chips = cfg.chips ?? []
     return (
@@ -150,7 +145,6 @@ function LeftBottom({ cfg }) {
     )
   }
 
-  // === Panel benefit (step 4)
   if (cfg.type === 'panel') {
     return (
       <div className="mt-8 rounded-xl border border-indigo-100 bg-white p-5 shadow-sm">
@@ -167,12 +161,11 @@ function LeftBottom({ cfg }) {
     )
   }
 
-  // === Testimonial (step 3, 6, 7)
   if (cfg.type === 'testimonial') {
     return (
       <div className="mt-8">
         <div className="text-5xl leading-none text-gray-300">“</div>
-        <Paragraph className="!mt-2 !text-gray-700 !text-lg">{cfg.quote}</Paragraph>
+        <Paragraph className="!mt-2 !text-gray-700 !text-2xl">{cfg.quote}</Paragraph>
         <div className="mt-4 flex items-center gap-3">
           <Avatar size={44} src={cfg.avatar} />
           <div>
@@ -184,7 +177,6 @@ function LeftBottom({ cfg }) {
     )
   }
 
-  // === CTA (step 5)
   if (cfg.type === 'cta') {
     return (
       <div className="mt-8 grid grid-cols-[auto,1fr] gap-4 items-center">
@@ -210,24 +202,21 @@ export default function ApplicationLayout() {
   const meta = STEP_LEFT[step] ?? STEP_LEFT[1]
 
   return (
-    <div className="min-h-screen p-10 grid grid-cols-1 lg:grid-cols-2 gap-0">
+    <div className="h-dvh grid grid-cols-1 lg:grid-cols-2 gap-0  p-10">
       <aside className="bg-[#F9F9FD] rounded-l-2xl">
-        <div className="h-full p-10 flex flex-col justify-between">
+        <div className="min-h-full p-10 flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-8">
-              <img src={logo} alt="" />
+            <div className="flex items-center gap-2 mb-8 shrink-0">
+              <img src={logo} alt="Blockforgex" />
             </div>
 
             <div className="max-w-xl">
               <Title
                 level={2}
-                className="!text-[40px] !leading-[48px] !font-semibold !tracking-normal
-             !w-[580px] overflow-hidden  !mb-2"
+                className="!text-[40px] !leading-[48px] !font-semibold !tracking-normal !w-[580px] overflow-hidden !mb-2"
               >
                 {meta.title}
               </Title>
-
-
               <Paragraph className="!text-gray-600 !text-base">{meta.desc}</Paragraph>
             </div>
           </div>
@@ -235,11 +224,10 @@ export default function ApplicationLayout() {
           <LeftBottom cfg={meta.bottom} />
         </div>
       </aside>
+
       <main className="bg-white rounded-r-2xl">
-        <div className="h-full p-10 flex">        {/* ← tambah flex */}
-          <div className="flex-1">                 {/* ← biar Outlet bisa min-h-full */}
-            <Outlet />
-          </div>
+        <div className="min-h-full p-10">
+          <Outlet />
         </div>
       </main>
     </div>

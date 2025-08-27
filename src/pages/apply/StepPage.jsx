@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux'
 import { selectApp } from '../../store'
 import { getInitials } from '../../utils/name'
 
-import Step1 from './Step1' 
+import Step1 from './Step1'
 import Step2 from './Step2'
 import Step7 from './Step7'
+import Step3 from './Step3'
 
 const { Text } = Typography
 
@@ -42,14 +43,14 @@ export default function StepPage({ total = 7 }) {
         switch (n) {
             case 1: return <Step1 onNext={next} setSubmitter={(fn) => (submitRef.current = fn)} />
             case 2: return <Step2 onNext={next} setSubmitter={(fn) => (submitRef.current = fn)} />
-            // ...
+            case 3: return <Step3 onNext={next} setSubmitter={(fn) => (submitRef.current = fn)} />
             case 7: return <Step7 setSubmitter={(fn) => (submitRef.current = fn)} />
             default: return <Step1 onNext={next} setSubmitter={(fn) => (submitRef.current = fn)} />
         }
     }, [n])
 
     return (
-        <section className="min-h-full flex flex-col">
+        <section className="min-h-[calc(90vh-80px)] flex flex-col">
             <div className="mb-6">
                 <div className="flex items-center justify-between">
                     <Text className="text-xl font-medium leading-[1.4] tracking-[0.13em] text-center">
@@ -62,7 +63,6 @@ export default function StepPage({ total = 7 }) {
                             <Text className="text-gray-600">{fullName}</Text>
                         </div>
                     )}
-
                 </div>
 
                 <div className="mt-3 h-0.5 w-full bg-gray-200 rounded">
@@ -70,30 +70,30 @@ export default function StepPage({ total = 7 }) {
                 </div>
             </div>
 
-            <div className="flex-1">{body}</div>
+            <div className="flex-1">
+                {body}
+            </div>
 
-            <div className="mt-8 flex items-center justify-between">
-                <div>
+            <div className="z-10 mt-8 bg-white pt-4">
+                <div className="flex items-center justify-between">
                     <Button
-                        size="large"
                         onClick={prev}
-                        className={`rf-btn-default rounded-xl w-50 ${n <= 1 ? 'invisible' : ''}`}
+                        className={`rf-btn-default ${n <= 1 ? 'invisible' : ''}`}
                     >
                         Back
                     </Button>
+
+                    <Space align="center">
+                        <Button
+                            type="primary"
+                            onClick={handleContinue}
+                            className="rf-btn-primary"
+                        >
+                            {n < total ? 'Continue' : 'Submit'}
+                        </Button>
+                    </Space>
                 </div>
-                <Space align="center">
-                    <Button
-                        type="primary"              // boleh tetap pakai ini
-                        onClick={handleContinue}
-                        className="rf-btn-primary w-50"  // class custom
-                    >
-                        {n < total ? 'Continue' : 'Submit'}
-                    </Button>
-
-                </Space>
             </div>
-
         </section>
     )
 }
