@@ -10,7 +10,6 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Navigate to="/apply/step/1" replace />} />
 
-      {/* Parent route mengandung :step -> layout bisa baca step */}
       <Route path="/apply/step/:step" element={<ApplicationLayout />}>
         <Route index element={<StepPage total={7} />} />
       </Route>

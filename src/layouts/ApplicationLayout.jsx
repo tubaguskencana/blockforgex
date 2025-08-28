@@ -7,33 +7,9 @@ import logo from '../assets/logo-blockforgex.png'
 import step1Image from '../assets/step1.png'
 import step2Image from '../assets/step2.png'
 import step5Image from '../assets/step5.png'
-
+import useIsDesktop  from '../hooks/useIsDesktop'
 const { Title, Paragraph, Text } = Typography
 
-function useIsDesktop() {
-  const getMatch = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(min-width: 1024px)').matches
-
-  const [isDesktop, setIsDesktop] = useState(getMatch)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 1024px)')
-    const onChange = (e) => setIsDesktop(e.matches)
-    if (mq.addEventListener) mq.addEventListener('change', onChange)
-    else mq.addListener(onChange)
-
-    // sinkronkan saat mount
-    setIsDesktop(mq.matches)
-
-    return () => {
-      if (mq.removeEventListener) mq.removeEventListener('change', onChange)
-      else mq.removeListener(onChange)
-    }
-  }, [])
-
-  return isDesktop
-}
 
 const STEP_LEFT = {
   1: {
@@ -264,12 +240,7 @@ export default function ApplicationLayout() {
 
       <main className="bg-white rounded-r-2xl">
         <div className="min-h-full p-5 lg:p-10">
-          {!isDesktop && (
-            <div className="flex items-center gap-2 mb-8 shrink-0">
-              <img src={logo} alt="Blockforgex" />
-            </div>
-          )}
-          <Outlet />
+          <Outlet context={{ leftMeta: meta }} />
         </div>
       </main>
     </div>
