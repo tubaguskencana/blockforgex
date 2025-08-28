@@ -15,8 +15,7 @@ export default function Step1({ onNext, setSubmitter }) {
   const [form] = Form.useForm()
 
   useEffect(() => {
-    // ✅ DAFTARKAN FUNGSI YANG BENAR-BENAR MENJALANKAN SUBMIT
-    setSubmitter?.(form.submit)            // atau: setSubmitter?.(() => form.submit())
+    setSubmitter?.(form.submit)
     return () => setSubmitter?.(null)
   }, [form, setSubmitter])
 
@@ -63,12 +62,16 @@ export default function Step1({ onNext, setSubmitter }) {
       </Form.Item>
 
 
-      <Form.Item label="Job Search Status" name="jobStatus" rules={[{ required: true, message: 'Please choose one' }]}>
+      <Form.Item
+        label="Job Search Status"
+        name="jobStatus"
+        rules={[{ required: true, message: 'Please choose one' }]}
+      >
         <Radio.Group className="rf-radio w-full">
-          <Space size="large" wrap className="w-full">
+          <div className="flex flex-wrap w-full gap-4">
             <Radio.Button
               value="active"
-              className="rf-pill !inline-flex !items-center !gap-2 !h-auto !py-3 !px-4 !rounded-xl !whitespace-nowrap"
+              className="rf-pill w-full md:!w-[calc(50%-8px)] !inline-flex !items-center !justify-center !gap-2 !h-auto !py-3 !px-4 !rounded-xl !whitespace-nowrap !text-center"
             >
               <JobSearchIcon size={20} color="currentColor" className="align-middle" />
               <span>Actively looking for a job.</span>
@@ -76,15 +79,17 @@ export default function Step1({ onNext, setSubmitter }) {
 
             <Radio.Button
               value="casual"
-              className="rf-pill !inline-flex !items-center !gap-2 !h-auto !py-3 !px-4 !rounded-xl !whitespace-nowrap"
+              className="rf-pill w-full md:!w-[calc(50%-8px)] !inline-flex !items-center !justify-center !gap-2 !h-auto !py-3 !px-4 !rounded-xl !whitespace-nowrap !text-center"
             >
               <DashboardBrowsingIcon size={20} color="currentColor" className="align-middle" />
               <span>Casually browsing.</span>
             </Radio.Button>
 
-          </Space>
+
+          </div>
         </Radio.Group>
       </Form.Item>
+
 
 
       <Card className="rounded-xl bg-gray-50/70">
@@ -101,8 +106,6 @@ export default function Step1({ onNext, setSubmitter }) {
           </Checkbox.Group>
         </Form.Item>
       </Card>
-
-      {/* Tombol submit tidak dibutuhkan di sini; ada di parent */}
     </Form>
   )
 }

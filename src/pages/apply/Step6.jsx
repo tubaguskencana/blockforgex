@@ -1,4 +1,3 @@
-// src/pages/apply/Step2.jsx
 import { Form, Radio } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { upsert } from '../../store/appSlice'
@@ -44,7 +43,7 @@ export default function Step6({ onNext, setSubmitter }) {
                 <Radio.Group className="w-full">
                     <div className="grid gap-4">
                         {/* Individual */}
-                        <Radio value="individual" className="rf-choice group w-full">
+                        <Radio value="beginner" className="rf-choice group w-full">
                             <div
                                 className="
             relative w-full rounded-xl border border-[#E6E6E6] bg-white p-4
@@ -75,7 +74,7 @@ export default function Step6({ onNext, setSubmitter }) {
                         </Radio>
 
                         {/* Company */}
-                        <Radio value="company" className="rf-choice group w-full">
+                        <Radio value="intermediate" className="rf-choice group w-full">
                             <div
                                 className="
             relative w-full rounded-xl border border-[#E6E6E6] bg-white p-4
@@ -100,7 +99,7 @@ export default function Step6({ onNext, setSubmitter }) {
                                 </div>
                             </div>
                         </Radio>
-                        <Radio value="asneeded" className="rf-choice group w-full">
+                        <Radio value="advanced" className="rf-choice group w-full">
                             <div
                                 className="
             relative w-full rounded-xl border border-[#E6E6E6] bg-white p-4

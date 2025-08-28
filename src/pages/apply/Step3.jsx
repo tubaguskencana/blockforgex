@@ -1,4 +1,3 @@
-// src/pages/apply/Step3.jsx
 import { Form, Select } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'

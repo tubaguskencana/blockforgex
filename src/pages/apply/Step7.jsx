@@ -1,4 +1,3 @@
-// src/pages/apply/Step7.jsx
 import { Form, Input } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { upsert } from '../../store/appSlice'

@@ -1,16 +1,14 @@
-/* Import reset AntD duluan */
 @import 'antd/dist/reset.css';
 
 @layer base{
   #root {
     width: 100%;
-    min-height: 100dvh;   /* aman di mobile viewport */
-    display: block;       /* jangan ikut shrink-wrap */
+    min-height: 100dvh;   
+    display: block;       
   }
 }
 @layer components {
 
-  /* Base (UNchecked) */
   .rf-radio .ant-radio-button-wrapper.rf-pill {
     @apply h-auto py-3 px-4 rounded-[12px];
     background: #ffffff !important;
@@ -29,12 +27,9 @@
     color: #000000 !important;
   }
 
-  /* Hilangkan separator default antar Radio.Button */
   .rf-radio .ant-radio-button-wrapper.rf-pill::before {
     display: none !important;
   }
-
-  /* Checked */
   .rf-radio .ant-radio-button-wrapper-checked.rf-pill,
   .rf-radio .ant-radio-button-wrapper-checked.rf-pill:not(.ant-radio-button-wrapper-disabled) {
     background: #F2F2FD !important;
@@ -47,31 +42,24 @@
     color: #4F46E5 !important;
   }
 
-  /* Hover (opsional) */
   .rf-radio .ant-radio-button-wrapper.rf-pill:hover {
     border-color: #4F46E5 !important;
   }
 
 
 
-  /* CASE 1: Input biasa (tanpa prefix/suffix) */
   .rf-input.ant-input {
     padding-block: 16px !important;
-    /* top & bottom */
     padding-inline: 32px !important;
-    /* left & right */
     border-radius: 12px !important;
     border: 1px solid #E6E6E6 !important;
     height: auto !important;
-    /* biar ikut padding */
   }
 
-  /* CASE 2: Input dengan affix wrapper (jaga-jaga kalau nanti dipakai) */
   .rf-input.ant-input-affix-wrapper {
     border-radius: 12px !important;
     border: 1px solid #E6E6E6 !important;
     padding: 0 !important;
-    /* padding pindah ke inner input */
     height: auto !important;
     box-shadow: none !important;
   }
@@ -85,7 +73,6 @@
     padding-inline: 8px !important;
   }
 
-  /* (Opsional) Focus ring enak */
   .rf-input.ant-input:focus,
   .rf-input.ant-input-affix-wrapper-focused {
     border-color: #4F46E5 !important;
@@ -95,7 +82,6 @@
   .rf-btn-primary.ant-btn-primary {
     height: auto !important;
     padding: 16px 12px !important;
-    /* T:16 / L:12 */
     border-radius: 12px !important;
     font-weight: 600 !important;
 
@@ -124,14 +110,10 @@
     color: #ffffff !important;
   }
 
-  /* ==========================
-     DEFAULT BUTTON
-     ========================== */
   .rf-btn-default.ant-btn,
   .rf-btn-default.ant-btn-default {
     height: auto !important;
     padding: 16px 12px !important;
-    /* T:16 / L:12 */
     border-radius: 8px !important;
     font-weight: 600 !important;
 
@@ -168,12 +150,9 @@
   }
 
   .rf-avatar-initials.ant-avatar {
-    /* radial gradient #4F46E5 → #837CFF */
     background-image: radial-gradient(100% 100% at 30% 30%, #4F46E5 0%, #837CFF 100%) !important;
     color: #ffffff !important;
-    /* teks inisial putih */
     font-weight: 600 !important;
-    /* biar inisial lebih tegas */
   }
 
   .rf-choice.ant-radio-wrapper {
@@ -183,7 +162,6 @@
     margin: 0;
   }
 
-  /* bulatan radio pindah ke kanan-atas kartu */
   .rf-choice .ant-radio {
     position: absolute;
     right: 16px;
@@ -191,7 +169,6 @@
     margin: 0;
   }
 
-  /* biar span konten (card) melebar penuh */
   .rf-choice .ant-radio+span {
     display: block;
     width: 100%;
@@ -199,18 +176,14 @@
   
 }
 
-/* Aktifkan Tailwind v4 */
 @import 'tailwindcss';
 
-/* (opsional) Theme Tailwind v4 via CSS */
 @theme {
   --color-primary: #1677ff;
-  /* selaras token AntD */
   --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-/* util kecil */
 .container {
   @apply max-w-6xl mx-auto px-4;
 }
@@ -288,5 +261,10 @@ button:focus-visible {
 
   button {
     background-color: #f9f9f9;
+  }
+}
+@media (max-width: 640px) {
+  body {
+    padding: 0 !important;
   }
 }

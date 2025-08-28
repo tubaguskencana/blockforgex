@@ -1,4 +1,3 @@
-// src/pages/apply/Step2.jsx
 import { Form, Radio } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { upsert } from '../../store/appSlice'

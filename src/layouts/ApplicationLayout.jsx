@@ -1,14 +1,39 @@
 // src/layouts/ApplicationLayout.jsx
+import { useState, useEffect } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import { Typography, Tag, Avatar } from 'antd'
-import {
-  CheckCircleFilled
-} from '@ant-design/icons'
+import { CheckCircleFilled } from '@ant-design/icons'
 import logo from '../assets/logo-blockforgex.png'
 import step1Image from '../assets/step1.png'
 import step2Image from '../assets/step2.png'
 import step5Image from '../assets/step5.png'
+
 const { Title, Paragraph, Text } = Typography
+
+function useIsDesktop() {
+  const getMatch = () =>
+    typeof window !== 'undefined' &&
+    window.matchMedia('(min-width: 1024px)').matches
+
+  const [isDesktop, setIsDesktop] = useState(getMatch)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const onChange = (e) => setIsDesktop(e.matches)
+    if (mq.addEventListener) mq.addEventListener('change', onChange)
+    else mq.addListener(onChange)
+
+    // sinkronkan saat mount
+    setIsDesktop(mq.matches)
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', onChange)
+      else mq.removeListener(onChange)
+    }
+  }, [])
+
+  return isDesktop
+}
 
 const STEP_LEFT = {
   1: {
@@ -36,7 +61,6 @@ const STEP_LEFT = {
       notFull: true,
     },
   },
-
 
   3: {
     logoText: 'BLOCKFORGEX',
@@ -113,7 +137,6 @@ const STEP_LEFT = {
   },
 }
 
-
 function LeftBottom({ cfg }) {
   if (!cfg) return null
 
@@ -133,7 +156,6 @@ function LeftBottom({ cfg }) {
     )
   }
 
-
   if (cfg.type === 'cluster') {
     const chips = cfg.chips ?? []
     return (
@@ -149,13 +171,12 @@ function LeftBottom({ cfg }) {
     )
   }
 
-  // Panel benefit (step 4)
   if (cfg.type === 'panel') {
     return (
       <div
         className="
         mt-8 rounded-[12px] bg-[#F2F2FD]
-        py-7 px-5      /* 28px 20px */
+        py-7 px-5
       "
       >
         <Text className="!text-[#4F46E5] !font-medium !text-[20px]">
@@ -173,7 +194,6 @@ function LeftBottom({ cfg }) {
       </div>
     )
   }
-
 
   if (cfg.type === 'testimonial') {
     return (
@@ -211,36 +231,44 @@ function LeftBottom({ cfg }) {
 }
 
 export default function ApplicationLayout() {
+  const isDesktop = useIsDesktop()
   const { step: stepStr } = useParams()
   const step = Number(stepStr) || 1
   const meta = STEP_LEFT[step] ?? STEP_LEFT[1]
 
   return (
-    <div className="h-dvh grid grid-cols-1 lg:grid-cols-2 gap-0  p-10">
-      <aside className="bg-[#F9F9FD] rounded-l-2xl">
-        <div className="min-h-full p-10 flex flex-col justify-between">
-          <div>
+    <div className="h-dvh grid grid-cols-1 lg:grid-cols-2 gap-0 p-0 lg:p-10">
+      {isDesktop && (
+        <aside className="bg-[#F9F9FD] rounded-l-2xl">
+          <div className="min-h-full p-10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-8 shrink-0">
+                <img src={logo} alt="Blockforgex" />
+              </div>
+
+              <div className="max-w-xl">
+                <Title
+                  level={2}
+                  className="!text-[40px] !leading-[48px] !font-semibold !tracking-normal md:!w-[580px] overflow-hidden !mb-2"
+                >
+                  {meta.title}
+                </Title>
+                <Paragraph className="!text-gray-600 !text-base">{meta.desc}</Paragraph>
+              </div>
+            </div>
+
+            <LeftBottom cfg={meta.bottom} />
+          </div>
+        </aside>
+      )}
+
+      <main className="bg-white rounded-r-2xl">
+        <div className="min-h-full p-5 lg:p-10">
+          {!isDesktop && (
             <div className="flex items-center gap-2 mb-8 shrink-0">
               <img src={logo} alt="Blockforgex" />
             </div>
-
-            <div className="max-w-xl">
-              <Title
-                level={2}
-                className="!text-[40px] !leading-[48px] !font-semibold !tracking-normal !w-[580px] overflow-hidden !mb-2"
-              >
-                {meta.title}
-              </Title>
-              <Paragraph className="!text-gray-600 !text-base">{meta.desc}</Paragraph>
-            </div>
-          </div>
-
-          <LeftBottom cfg={meta.bottom} />
-        </div>
-      </aside>
-
-      <main className="bg-white rounded-r-2xl">
-        <div className="min-h-full p-10">
+          )}
           <Outlet />
         </div>
       </main>
