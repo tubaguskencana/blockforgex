@@ -19,7 +19,7 @@ export default function VideoHelp() {
             <div className="max-w-6xl mx-auto h-full flex flex-col">
                 {/* ROW 1: logo kiri, avatar+nama kanan */}
                 <div className="flex items-center justify-between">
-                    <img src={logo} alt="Blockforgex" className="h-8 w-auto" />
+                    <img src={logo} alt="Blockforgex" className="h-[64px] w-auto" />
                     {fullName && (
                         <div className="flex items-center gap-2">
                             <Avatar
