@@ -101,25 +101,24 @@ export default function StepPage({ total = 7 }) {
                 {body}
             </div>
             <div className="z-10 mt-auto bg-white pt-4">
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col-reverse gap-3 lg:flex-row lg:items-center lg:justify-between">
                     <Button
                         onClick={prev}
-                        className={`rf-btn-default ${n <= 1 ? 'invisible' : ''}`}
+                        className={`${n <= 1 ? 'hidden lg:invisible' : ''} w-full lg:w-auto rf-btn-default`}
                     >
                         Back
                     </Button>
 
-                    <Space align="center">
-                        <Button
-                            type="primary"
-                            onClick={handleContinue}
-                            className="rf-btn-primary"
-                        >
-                            {n < total ? 'Continue' : 'Submit'}
-                        </Button>
-                    </Space>
+                    <Button
+                        type="primary"
+                        onClick={handleContinue}
+                        className="w-full lg:w-auto rf-btn-primary"
+                    >
+                        {n < total ? 'Continue' : 'Submit'}
+                    </Button>
                 </div>
             </div>
+
         </section>
     )
 }
