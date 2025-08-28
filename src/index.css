@@ -1,6 +1,13 @@
 /* Import reset AntD duluan */
 @import 'antd/dist/reset.css';
 
+@layer base{
+  #root {
+    width: 100%;
+    min-height: 100dvh;   /* aman di mobile viewport */
+    display: block;       /* jangan ikut shrink-wrap */
+  }
+}
 @layer components {
 
   /* Base (UNchecked) */
@@ -10,6 +17,12 @@
     border: 1px solid #E6E6E6 !important;
     color: #000000 !important;
     box-shadow: none !important;
+  }
+  .rf-radio .ant-radio-button-wrapper.rf-pill svg{
+    color: inherit !important;
+    vertical-align: middle;
+    display: inline-block !important;
+    margin-right: 10px !important;
   }
 
   .rf-radio .ant-radio-button-wrapper.rf-pill .anticon {
@@ -66,6 +79,10 @@
   .rf-input.ant-input-affix-wrapper .ant-input {
     padding-block: 16px !important;
     padding-inline: 32px !important;
+  }
+
+  .rf-input.ant-input-affix-wrapper.conversion .ant-input {
+    padding-inline: 8px !important;
   }
 
   /* (Opsional) Focus ring enak */
@@ -179,6 +196,7 @@
     display: block;
     width: 100%;
   }
+  
 }
 
 /* Aktifkan Tailwind v4 */

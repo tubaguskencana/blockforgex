@@ -4,6 +4,8 @@ import { upsert } from '../../store/appSlice'
 import { selectApp } from '../../store'
 import { useEffect } from 'react'
 import { FileSearchOutlined, GlobalOutlined } from '@ant-design/icons'
+import { JobSearchIcon } from 'hugeicons-react'
+import { DashboardBrowsingIcon } from 'hugeicons-react'
 
 const { Text } = Typography
 
@@ -64,14 +66,22 @@ export default function Step1({ onNext, setSubmitter }) {
       <Form.Item label="Job Search Status" name="jobStatus" rules={[{ required: true, message: 'Please choose one' }]}>
         <Radio.Group className="rf-radio w-full">
           <Space size="large" wrap className="w-full">
-            <Radio.Button value="active" className="rf-pill !h-auto !py-3 !px-4 !rounded-xl">
-              <FileSearchOutlined className="mr-2" />
-              Actively looking for a job.
+            <Radio.Button
+              value="active"
+              className="rf-pill !inline-flex !items-center !gap-2 !h-auto !py-3 !px-4 !rounded-xl !whitespace-nowrap"
+            >
+              <JobSearchIcon size={20} color="currentColor" className="align-middle" />
+              <span>Actively looking for a job.</span>
             </Radio.Button>
-            <Radio.Button value="casual" className="rf-pill !h-auto !py-3 !px-4 !rounded-xl">
-              <GlobalOutlined className="mr-2" />
-              Casually browsing.
+
+            <Radio.Button
+              value="casual"
+              className="rf-pill !inline-flex !items-center !gap-2 !h-auto !py-3 !px-4 !rounded-xl !whitespace-nowrap"
+            >
+              <DashboardBrowsingIcon size={20} color="currentColor" className="align-middle" />
+              <span>Casually browsing.</span>
             </Radio.Button>
+
           </Space>
         </Radio.Group>
       </Form.Item>

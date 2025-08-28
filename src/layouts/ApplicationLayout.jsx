@@ -7,6 +7,7 @@ import {
 import logo from '../assets/logo-blockforgex.png'
 import step1Image from '../assets/step1.png'
 import step2Image from '../assets/step2.png'
+import step5Image from '../assets/step5.png'
 const { Title, Paragraph, Text } = Typography
 
 const STEP_LEFT = {
@@ -19,6 +20,7 @@ const STEP_LEFT = {
       type: 'image',
       src: step1Image,
       alt: 'Blockforgex hero',
+      notFull: false,
     },
   },
 
@@ -31,6 +33,7 @@ const STEP_LEFT = {
       type: 'image',
       src: step2Image,
       alt: 'Business type illustration',
+      notFull: true,
     },
   },
 
@@ -72,10 +75,10 @@ const STEP_LEFT = {
     desc:
       'Choose a work schedule that fits your lifestyle — from full-time roles to flexible, on-demand opportunities.',
     bottom: {
-      type: 'cta',
-      text: 'Create more impact with a full-time commitment',
-      illustration:
-        'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120"><rect width="160" height="120" rx="18" fill="%23EEF2FF"/><circle cx="60" cy="70" r="26" fill="%23E9D5FF"/><circle cx="96" cy="54" r="18" fill="%23DDD6FE"/></svg>',
+      type: 'image',
+      src: step5Image,
+      alt: 'Blockforgex hero',
+      notFull: true,
     },
   },
 
@@ -116,13 +119,14 @@ function LeftBottom({ cfg }) {
 
   if (cfg.type === 'image' || cfg.src || cfg.image) {
     const src = cfg.src || cfg.image
+    const notFull = cfg.notFull ? 'max-h-[527px]' : 'w-full max-h-[435px]'
     if (!src) return null
     return (
       <div className="mt-8">
         <img
           src={src}
           alt={cfg.alt || ''}
-          className="w-full h-auto rounded-xl object-contain max-h-[320px]"  // 🔹 batasi tinggi
+          className={`${notFull} h-auto rounded-xl object-contain `}
           loading="lazy"
         />
       </div>
@@ -145,21 +149,31 @@ function LeftBottom({ cfg }) {
     )
   }
 
+  // Panel benefit (step 4)
   if (cfg.type === 'panel') {
     return (
-      <div className="mt-8 rounded-xl border border-indigo-100 bg-white p-5 shadow-sm">
-        <Text strong className="text-indigo-700">{cfg.title}</Text>
-        <ul className="mt-3 space-y-2">
+      <div
+        className="
+        mt-8 rounded-[12px] bg-[#F2F2FD]
+        py-7 px-5      /* 28px 20px */
+      "
+      >
+        <Text className="!text-[#4F46E5] !font-medium !text-[20px]">
+          {cfg.title}
+        </Text>
+
+        <ul className="mt-4 space-y-3">
           {cfg.bullets?.map((b, i) => (
             <li key={i} className="flex items-start gap-2">
               <CheckCircleFilled style={{ color: '#22c55e' }} className="mt-0.5" />
-              <span className="text-gray-700">{b}</span>
+              <span className="text-[#696969]">{b}</span>
             </li>
           ))}
         </ul>
       </div>
     )
   }
+
 
   if (cfg.type === 'testimonial') {
     return (
