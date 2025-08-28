@@ -1,4 +1,3 @@
-// src/pages/apply/VideoRecord.jsx
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Typography, Avatar, message } from "antd";
 import { useSelector } from "react-redux";
@@ -6,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { selectApp } from "../../store";
 import { getInitials } from "../../utils/name";
 import logo from "../../assets/logo-blockforgex.png";
-import { CameraOutlined, ReloadOutlined, CloseCircleOutlined } from "@ant-design/icons";
-
+import { CameraOutlined, ReloadOutlined, CloseCircleOutlined, VideoCameraOutlined, StopOutlined } from "@ant-design/icons";
+import useIsDesktop  from "../../hooks/useIsDesktop";
 const { Title, Text } = Typography;
-const MAX_SECONDS = 180; // 3 menit
+const MAX_SECONDS = 180;
 
 export default function VideoRecord() {
+    const isDesktop = useIsDesktop()
     const { fullName } = useSelector(selectApp);
     const initials = getInitials(fullName);
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function VideoRecord() {
     const recorderRef = useRef(null);
     const chunksRef = useRef([]);
 
-    const [status, setStatus] = useState("init"); // init | error | ready | recording | preview
+    const [status, setStatus] = useState("init");
     const [devices, setDevices] = useState([]);
     const [deviceIdx, setDeviceIdx] = useState(0);
     const [blobURL, setBlobURL] = useState("");
@@ -84,7 +84,7 @@ export default function VideoRecord() {
             stopStream();
             if (blobURL) URL.revokeObjectURL(blobURL);
         };
-    }, []); // eslint-disable-line
+    }, []);
 
     useEffect(() => {
         if (status === "ready" || status === "recording") {
@@ -151,7 +151,6 @@ export default function VideoRecord() {
     };
 
     const submitVideo = async () => {
-        // TODO: upload ke API; untuk sekarang langsung ke success
         navigate("/apply/video/success");
     };
 
@@ -159,15 +158,14 @@ export default function VideoRecord() {
         `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
     return (
-        <div className="h-dvh w-full p-10">
+        <div className="h-dvh w-full gap-0 p-5 lg:p-10">
             <div className="max-w-6xl mx-auto h-full flex flex-col">
-                {/* ROW 1: logo kiri, avatar+nama kanan */}
                 <div className="flex items-center justify-between">
                     <img src={logo} alt="Blockforgex" className="h-[64px] w-auto" />
                     {fullName && (
                         <div className="flex items-center gap-2">
                             <Avatar
-                                size={28}
+                                size={34}
                                 className="text-white"
                                 style={{
                                     background:
@@ -177,22 +175,28 @@ export default function VideoRecord() {
                             >
                                 {initials}
                             </Avatar>
-                            <Text className="text-gray-700">{fullName}</Text>
+                            {isDesktop && (
+                                <Text className="text-gray-700">{fullName}</Text>
+                            )}
                         </div>
                     )}
                 </div>
 
-                {/* ROW 2: back kiri, TITLE center (sebaris) */}
-                <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center">
-                    <button
+                <div className="mt-4 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-y-2 mt-8">
+                    {/* Back — tetap kiri; di mobile muncul di baris atas */}
+                    <a
                         onClick={() => navigate(-1)}
-                        className="justify-self-start text-indigo-600 hover:underline"
+                        className="justify-self-start text-indigo-600 hover:underline self-start"
                     >
                         ← Back
-                    </button>
+                    </a>
 
+                    {/* Title — center; font 20px di mobile, 4xl di desktop */}
                     <div className="justify-self-center text-center">
-                        <Title level={1} className="!text-4xl !leading-[1.2] !mb-1">
+                        <Title
+                            level={1}
+                            className="!text-[20px] lg:!text-4xl !leading-[1.2] !mb-1"
+                        >
                             Share Your Story & Achievements
                         </Title>
                         <Text type="secondary">
@@ -200,25 +204,26 @@ export default function VideoRecord() {
                         </Text>
                     </div>
 
-                    <div /> {/* spacer kanan */}
+                    {/* spacer kanan: hanya diperlukan di desktop agar title benar2 center */}
+                    <div className="hidden lg:block" />
                 </div>
 
-                {/* VIDEO WRAPPER — center, rounded penuh, tinggi fix 300px */}
+
                 <div className="mt-8 mx-auto w-full max-w-2xl rounded-2xl shadow-sm bg-black relative">
                     <div className="overflow-hidden rounded-2xl">
-                        {/* State panels */}
                         {status === "error" && (
-                            <div className="h-[300px] flex flex-col items-center justify-center text-white">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-500/20 mb-3">
-                                    <CloseCircleOutlined className="text-red-400 text-2xl" />
+                            <div className="h-[300px] flex flex-col items-center justify-center text-white px-2.5">
+                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#FB2626] mb-3">
+                                <VideoCameraOutlined style={{ position: 'absolute' }} />
+                                <StopOutlined style={{ position: 'absolute', color: 'white', fontSize: '30px' }} />
                                 </div>
                                 <div className="text-lg font-semibold">Camera not Ready!!</div>
-                                <p className="text-gray-300 text-sm mt-1">
+                                <p className="text-gray-300 text-sm mt-1 text-center !text-[12px] !lg:text-[14px]">
                                     Please check permissions, connection, or device availability.
                                 </p>
                                 <Button
                                     type="primary"
-                                    className="rf-btn-primary mt-3"
+                                    className="!text-[12px] !lg:text-[14px] !bg-[#4F46E5] mt-3 !px-3 !py-2 h-8"
                                     onClick={() => navigate("/apply/video/help")}
                                 >
                                     Why this happen?
@@ -237,15 +242,12 @@ export default function VideoRecord() {
 
                         {(status === "ready" || status === "recording") && (
                             <div className="relative h-[300px]">
-                                {/* VIDEO (tanpa controls saat stream) */}
                                 <video
                                     ref={videoRef}
                                     className="block w-full h-full object-contain bg-black"
                                 />
 
-                                {/* OVERLAY di atas video */}
                                 <div className="absolute inset-0 z-20 pointer-events-none">
-                                    {/* Switch camera (kanan-atas) */}
                                     {devices.length > 1 && (
                                         <button
                                             type="button"
@@ -261,16 +263,14 @@ export default function VideoRecord() {
 
                                     )}
 
-                                    {/* Record/Stop (tengah-bawah) */}
                                     <div className="absolute left-1/2 -translate-x-1/2 bottom-3">
                                         <button
                                             type="button"
                                             onClick={status === "recording" ? stopRecording : startRecording}
                                             className="pointer-events-auto"
                                             aria-label={status === "recording" ? "Stop recording" : "Start recording"}
-                                            onMouseDown={(e) => e.preventDefault()} // ⬅︎ cegah focus saat klik mouse
+                                            onMouseDown={(e) => e.preventDefault()}
 
-                                            // netralisir global button background
                                             style={{ backgroundColor: "transparent", border: "none", padding: 0 }}
                                         >
                                             <span
@@ -293,7 +293,6 @@ export default function VideoRecord() {
                                         </button>
                                     </div>
 
-                                    {/* Timer (kiri-bawah) */}
                                     {status === "recording" && (
                                         <div className="absolute left-3 bottom-3 text-white/90 font-semibold">
                                             {formatTime(sec)} / 03:00
@@ -315,7 +314,6 @@ export default function VideoRecord() {
                     </div>
                 </div>
 
-                {/* Actions bawah video (preview only) */}
                 {status === "preview" && (
                     <div className="mt-4 mx-auto flex items-center gap-3">
                         <Button onClick={retake} className="rf-btn-default">Retake</Button>
@@ -325,7 +323,6 @@ export default function VideoRecord() {
                     </div>
                 )}
 
-                {/* (Opsional) Instruction ringkes */}
                 <div className="mx-auto mt-6 w-full max-w-3xl">
                     <div className="font-semibold text-gray-800 mb-3">Tips:</div>
                     <ol className="space-y-2 text-sm text-gray-700">

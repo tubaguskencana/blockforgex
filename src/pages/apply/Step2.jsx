@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { upsert } from '../../store/appSlice'
 import { selectApp } from '../../store'
 import { useEffect } from 'react'
-import { InboxOutlined, ApartmentOutlined } from '@ant-design/icons' // contoh ikon
+import { InboxOutlined, ApartmentOutlined } from '@ant-design/icons' 
 
 export default function Step2({ onNext, setSubmitter }) {
     const dispatch = useDispatch()

@@ -17,9 +17,7 @@ export default function Step7({ setSubmitter }) {
   }, [form, setSubmitter])
 
   const onFinish = (values) => {
-    // simpan ke Redux agar tetap tersedia di halaman berikutnya
     dispatch(upsert(values))
-    // lanjut ke halaman rekaman video
     navigate('/apply/video')
   }
 
@@ -68,7 +66,6 @@ export default function Step7({ setSubmitter }) {
       >
         <Input className="rf-input" placeholder="https://your-website.com" />
       </Form.Item>
-      {/* Tombol ada di StepPage; submit dipicu via setSubmitter(form.submit) */}
     </Form>
   )
 }

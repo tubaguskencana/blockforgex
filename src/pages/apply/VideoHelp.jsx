@@ -1,10 +1,10 @@
-// src/pages/apply/VideoHelp.jsx
 import { Button, Typography, Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectApp } from "../../store";
 import { getInitials } from "../../utils/name";
 import logo from "../../assets/logo-blockforgex.png";
+import useIsDesktop from "../../hooks/useIsDesktop";
 
 const { Title, Text } = Typography;
 
@@ -12,18 +12,17 @@ export default function VideoHelp() {
     const navigate = useNavigate();
     const { fullName } = useSelector(selectApp);
     const initials = getInitials(fullName);
+    const isDesktop = useIsDesktop();
 
     return (
-        // tetap p-10 + h-dvh sesuai request
-        <div className="h-dvh w-full p-10">
+        <div className="h-dvh w-full gap-0 p-5 lg:p-10">
             <div className="max-w-6xl mx-auto h-full flex flex-col">
-                {/* ROW 1: logo kiri, avatar+nama kanan */}
                 <div className="flex items-center justify-between">
                     <img src={logo} alt="Blockforgex" className="h-[64px] w-auto" />
                     {fullName && (
                         <div className="flex items-center gap-2">
                             <Avatar
-                                size={28}
+                                size={34}
                                 className="text-white"
                                 style={{
                                     background:
@@ -33,33 +32,38 @@ export default function VideoHelp() {
                             >
                                 {initials}
                             </Avatar>
-                            <Text className="text-gray-700">{fullName}</Text>
+                            {isDesktop && (
+                                <Text className="text-gray-700">{fullName}</Text>
+                            )}
                         </div>
                     )}
                 </div>
 
-                {/* ROW 2: Back kiri, Title center (sebaris) */}
-                <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center">
-                    <button
+                <div className="mt-4 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-y-2">
+                    <a
                         onClick={() => navigate(-1)}
-                        className="justify-self-start text-indigo-600 hover:underline"
+                        className="flex items-center lg:flex-none lg:items-start justify-self-center lg:justify-self-start text-indigo-600 !text-[#4F46E5] hover:underline h-12"
                     >
                         ← Back to Recording
-                    </button>
+                    </a>
+
 
                     <div className="justify-self-center text-center">
-                        <Title level={1} className="!text-4xl !leading-[1.2] !mb-1">
+                        <Title
+                            level={1}
+                            className="!text-[20px] lg:!text-4xl !leading-[1.2] !mb-1"
+                        >
                             Camera Setup Instructions
                         </Title>
-                        <Text type="secondary">
+                        <Text type="secondary" className="!text-sm lg:!text-base">
                             If your camera isn’t working, follow the steps below <br />or upload a pre-recorded video instead.
                         </Text>
                     </div>
 
-                    <div /> {/* spacer kanan agar title tetap benar2 center */}
+                    {/* spacer kanan: hanya diperlukan di desktop agar title benar2 center */}
+                    <div className="hidden lg:block" />
                 </div>
 
-                {/* VIDEO: center beneran */}
                 <div className="mt-8 mx-auto w-full max-w-2xl rounded-2xl shadow-sm bg-black">
                     <div className="overflow-hidden rounded-2xl">
                         <video
@@ -73,7 +77,6 @@ export default function VideoHelp() {
 
 
 
-                {/* Konten bawah (tetap center) */}
                 <div className="mx-auto mt-8 w-full max-w-3xl">
                     <div className="text-indigo-600 font-semibold mb-2">For Windows:</div>
                     <div className="rounded-xl border bg-gray-50 p-4 text-sm overflow-auto mb-2">

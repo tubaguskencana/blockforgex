@@ -1,4 +1,3 @@
-// src/layouts/ApplicationLayout.jsx
 import { useState, useEffect } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import { Typography, Tag, Avatar } from 'antd'

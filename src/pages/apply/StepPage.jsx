@@ -61,17 +61,22 @@ export default function StepPage({ total = 7 }) {
     }, [n])
 
     return (
-        <section className="min-h-[calc(100vh-80px)] flex flex-col">
+        <section className="min-h-[calc(90vh-80px)] flex flex-col">
             {!isDesktop && (
-                <div>
-                    <div className="flex items-center gap-2 mb-8 shrink-0">
-                        <img src={logo} alt="Blockforgex" />
-                    </div>
+                <div className="flex items-center justify-between mb-8">
+                    <img src={logo} alt="Blockforgex" className="h-11" />
+
+                    {fullName && n > 1 && (
+                        <div className="flex items-center gap-2">
+                            <Avatar size={28} className="rf-avatar-initials">{initials}</Avatar>
+                        </div>
+                    )}
                 </div>
             )}
+
             <div className="mb-6">
                 <div className="flex items-center justify-between">
-                    <Text className="text-xl font-medium leading-[1.4] tracking-[0.13em] text-center">
+                    <Text className="text-xl !font-medium leading-[1.4] tracking-[0.13em] text-center !text-[#4F46E5]">
                         STEP {n} OF {total}
                     </Text>
 
@@ -104,7 +109,7 @@ export default function StepPage({ total = 7 }) {
                 <div className="flex flex-col-reverse gap-3 lg:flex-row lg:items-center lg:justify-between">
                     <Button
                         onClick={prev}
-                        className={`${n <= 1 ? 'hidden lg:invisible' : ''} w-full lg:w-auto rf-btn-default`}
+                        className={`${n <= 1 ? 'hidden lg:invisible' : ''} w-full lg:w-50 rf-btn-default`}
                     >
                         Back
                     </Button>
@@ -112,7 +117,7 @@ export default function StepPage({ total = 7 }) {
                     <Button
                         type="primary"
                         onClick={handleContinue}
-                        className="w-full lg:w-auto rf-btn-primary"
+                        className="w-full lg:w-50 rf-btn-primary"
                     >
                         {n < total ? 'Continue' : 'Submit'}
                     </Button>
