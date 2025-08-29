@@ -39,10 +39,10 @@ export default function VideoHelp() {
                     )}
                 </div>
 
-                <div className="mt-4 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-y-2">
+                <div className="mt-4 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-y-2 mt-8">
                     <a
                         onClick={() => navigate(-1)}
-                        className="flex items-center lg:flex-none lg:items-start justify-self-center lg:justify-self-start text-indigo-600 !text-[#4F46E5] hover:underline h-12"
+                        className="justify-self-start text-indigo-600 cursor-pointer self-start"
                     >
                         ← Back to Recording
                     </a>

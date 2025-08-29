@@ -183,15 +183,13 @@ export default function VideoRecord() {
                 </div>
 
                 <div className="mt-4 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-y-2 mt-8">
-                    {/* Back — tetap kiri; di mobile muncul di baris atas */}
                     <a
                         onClick={() => navigate(-1)}
-                        className="justify-self-start text-indigo-600 hover:underline self-start"
+                        className="justify-self-start text-indigo-600 cursor-pointer self-start"
                     >
                         ← Back
                     </a>
 
-                    {/* Title — center; font 20px di mobile, 4xl di desktop */}
                     <div className="justify-self-center text-center">
                         <Title
                             level={1}
@@ -204,7 +202,6 @@ export default function VideoRecord() {
                         </Text>
                     </div>
 
-                    {/* spacer kanan: hanya diperlukan di desktop agar title benar2 center */}
                     <div className="hidden lg:block" />
                 </div>
 
@@ -252,7 +249,7 @@ export default function VideoRecord() {
                                         <button
                                             type="button"
                                             onClick={switchCamera}
-                                            onMouseDown={(e) => e.preventDefault()} // ⬅︎ cegah focus saat klik mouse
+                                            onMouseDown={(e) => e.preventDefault()}
                                             className="pointer-events-auto absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 shadow flex items-center justify-center
                                                    focus:outline-none focus:ring-0 focus-visible:outline-none"
                                             style={{ outline: 'none', WebkitTapHighlightColor: 'transparent' }}
@@ -285,8 +282,8 @@ export default function VideoRecord() {
                                                     className={[
                                                         "transition-all duration-150",
                                                         status === "recording"
-                                                            ? "w-3 h-3 bg-white rounded-[3px]"        // kotak kecil putih
-                                                            : "w-3.5 h-3.5 bg-red-600 rounded-full"   // lingkaran merah
+                                                            ? "w-3 h-3 bg-white rounded-[3px]"        
+                                                            : "w-3.5 h-3.5 bg-red-600 rounded-full"   
                                                     ].join(" ")}
                                                 />
                                             </span>
