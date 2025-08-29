@@ -44,7 +44,6 @@ export default function Step1({ onNext, setSubmitter }) {
         consents: app.consents ?? [],
       }}
       className="[&_.ant-form-item-label>label]:font-medium"
-
     >
       <Form.Item label="Full Name" name="fullName" rules={[{ required: true, message: 'Full name is required' }]}>
         <Input className="rf-input" placeholder="Zen Nakano" />
@@ -60,7 +59,6 @@ export default function Step1({ onNext, setSubmitter }) {
       >
         <Input className="rf-input !h-40" placeholder="Enter your email..." />
       </Form.Item>
-
 
       <Form.Item
         label="Job Search Status"
@@ -84,13 +82,9 @@ export default function Step1({ onNext, setSubmitter }) {
               <DashboardBrowsingIcon size={20} color="currentColor" className="align-middle" />
               <span>Casually browsing.</span>
             </Radio.Button>
-
-
           </div>
         </Radio.Group>
       </Form.Item>
-
-
 
       <Card className="rounded-xl bg-gray-50/70">
         <Text strong>For evaluation and communication purposes in line with privacy policy and cookie policy, I consent to:</Text>

@@ -1,10 +1,10 @@
-import { Form, Radio } from 'antd'
+import { Form } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { upsert } from '../../store/appSlice'
 import { selectApp } from '../../store'
 import { useEffect } from 'react'
-import { Briefcase07Icon } from 'hugeicons-react'
-import { WorkflowSquare08Icon } from 'hugeicons-react'
+import { Briefcase07Icon, WorkflowSquare08Icon } from 'hugeicons-react'
+import RadioCardGroup from '../../components/RadioCardGroup'
 
 export default function Step2({ onNext, setSubmitter }) {
     const dispatch = useDispatch()
@@ -21,6 +21,21 @@ export default function Step2({ onNext, setSubmitter }) {
         onNext()
     }
 
+    const businessTypeOptions = [
+        {
+            value: 'individual',
+            title: 'Independent Freelancer & Contractor',
+            description: 'Providing reliable, flexible, and high-quality support for your projects.',
+            icon: <Briefcase07Icon />
+        },
+        {
+            value: 'company',
+            title: 'Company / Organization Applicant',
+            description: 'Representing our team to deliver trusted expertise, scalable solutions, and long-term collaboration.',
+            icon: <WorkflowSquare08Icon />
+        }
+    ]
+
     return (
         <Form
             form={form}
@@ -35,69 +50,10 @@ export default function Step2({ onNext, setSubmitter }) {
                 name="businessType"
                 rules={[{ required: true, message: 'Please select your business type' }]}
             >
-                <Radio.Group className="w-full">
-                    <div className="grid gap-4">
-                        {/* Individual */}
-                        <Radio value="individual" className="rf-choice group w-full">
-                            <div
-                                className="
-            relative w-full rounded-xl border border-[#E6E6E6] bg-white p-4
-            group-[.ant-radio-wrapper-checked]:border-[#4F46E5]
-            group-[.ant-radio-wrapper-checked]:bg-[#F9F9FD]
-            group-[.ant-radio-wrapper-checked]:shadow-[inset_0_0_0_2px_rgba(79,70,229,0.20)]
-          "
-                            >
-                                <div className="flex items-start gap-3">
-                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#E6E6E6] bg-[#F4F4FB]">
-                                        <Briefcase07Icon />
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <div className="flex items-center justify-between">
-                                            <div className="font-semibold text-[#4F46E5] leading-[1.2]">
-                                                independent Freelancer & Contractor
-                                            </div>
-                                        </div>
-                                        <p className="mt-1 text-gray-500">
-                                            Providing reliable, flexible, and high-quality support for your projects.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Radio>
-
-                        {/* Company */}
-                        <Radio value="company" className="rf-choice group w-full">
-                            <div
-                                className="
-            relative w-full rounded-xl border border-[#E6E6E6] bg-white p-4
-            group-[.ant-radio-wrapper-checked]:border-[#4F46E5]
-            group-[.ant-radio-wrapper-checked]:bg-[#F9F9FD]
-            group-[.ant-radio-wrapper-checked]:shadow-[inset_0_0_0_2px_rgba(79,70,229,0.20)]
-          "
-                            >
-                                <div className="flex items-start gap-3">
-                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#E6E6E6] bg-[#F4F4FB]">
-                                        <WorkflowSquare08Icon />
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center justify-between">
-                                            <div className="font-semibold text-[#4F46E5] leading-[1.2]">
-                                                Company / Organization Applicant
-                                            </div>
-                                        </div>
-                                        <p className="mt-1 text-gray-500">
-                                            Representing our team to deliver trusted expertise, scalable solutions, and long-term collaboration.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Radio>
-                    </div>
-                </Radio.Group>
+                <RadioCardGroup
+                    options={businessTypeOptions}
+                />
             </Form.Item>
-
-
         </Form>
     )
 }
