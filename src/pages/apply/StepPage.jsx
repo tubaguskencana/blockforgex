@@ -62,34 +62,35 @@ export default function StepPage({ total = 7 }) {
 
     return (
         <section className="short:min-h-[calc(100vh-80px)] min-h-[calc(90dvh-80px)] flex flex-col">
-            {!isDesktop && (
-                <div className="flex items-center justify-between mb-8">
-                    <img src={logo} alt="Blockforgex" className="h-11" />
-
-                    {fullName && n > 1 && (
-                        <div className="flex items-center gap-2">
-                            <Avatar size={28} className="rf-avatar-initials">{initials}</Avatar>
+            <div className="sticky top-0 z-50 bg-white border-b border-gray-200">
+                {!isDesktop && (
+                    <div className="pb-4">
+                        <div className="flex items-center justify-between max-w-7xl mx-auto">
+                            <img src={logo} alt="Blockforgex" className="h-11" />
+                            {fullName && n > 1 && (
+                                <div className="flex items-center gap-2">
+                                    <Avatar size={28} className="rf-avatar-initials">{initials}</Avatar>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-            )}
+                    </div>
+                )}
 
-            <div className="mb-6">
-                <div className="flex items-center justify-between">
-                    <Text className="text-xl !font-medium leading-[1.4] tracking-[0.13em] text-center !text-[#4F46E5]">
-                        STEP {n} OF {total}
-                    </Text>
-
-                    {fullName && n > 1 && isDesktop && (
-                        <div className="flex items-center gap-2">
-                            <Avatar size={28} className="rf-avatar-initials">{initials}</Avatar>
-                            <Text className="text-gray-600">{fullName}</Text>
-                        </div>
-                    )}
-                </div>
-
-                <div className="mt-3 h-0.5 w-full bg-gray-200 rounded">
-                    <div className="h-0.5 bg-indigo-600 rounded" style={{ width: `${progress}%` }} />
+                <div className="pb-4">
+                    <div className="flex items-center justify-between max-w-7xl mx-auto">
+                        <Text className="text-xl !font-medium leading-[1.4] tracking-[0.13em] text-center !text-[#4F46E5]">
+                            STEP {n} OF {total}
+                        </Text>
+                        {fullName && n > 1 && isDesktop && (
+                            <div className="flex items-center gap-2">
+                                <Avatar size={28} className="rf-avatar-initials">{initials}</Avatar>
+                                <Text className="text-gray-600">{fullName}</Text>
+                            </div>
+                        )}
+                    </div>
+                    <div className="mt-3 h-0.5 w-full bg-gray-200 rounded">
+                        <div className="h-0.5 bg-indigo-600 rounded" style={{ width: `${progress}%` }} />
+                    </div>
                 </div>
             </div>
 

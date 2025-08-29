@@ -24,7 +24,7 @@ export default function Step4({ onNext, setSubmitter }) {
 
     const onFinish = (values) => {
         const amount = unfmt(values.minMonthlyRate)
-        dispatch(upsert({ minMonthlyRate: amount })) // simpan sebagai number
+        dispatch(upsert({ minMonthlyRate: amount }))
         onNext?.()
     }
 
@@ -41,7 +41,6 @@ export default function Step4({ onNext, setSubmitter }) {
             requiredMark={false}
             className="[&_.ant-form-item-label>label]:font-medium"
             initialValues={{
-                // tampilkan terformat jika sebelumnya sudah ada di redux
                 minMonthlyRate: app.minMonthlyRate ? fmt(app.minMonthlyRate) : '',
             }}
         >
