@@ -82,7 +82,7 @@
   .rf-btn-primary.ant-btn,
   .rf-btn-primary.ant-btn-primary {
     height: auto !important;
-    padding: 16px 12px !important;
+    padding: 12px 25px !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
 
@@ -114,7 +114,7 @@
   .rf-btn-default.ant-btn,
   .rf-btn-default.ant-btn-default {
     height: auto !important;
-    padding: 16px 12px !important;
+    padding: 12px 25px !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
 

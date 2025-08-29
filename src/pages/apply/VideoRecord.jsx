@@ -313,7 +313,13 @@ export default function VideoRecord() {
 
                 {status === "preview" && (
                     <div className="mt-4 mx-auto flex items-center gap-3">
-                        <Button onClick={retake} className="rf-btn-default">Retake</Button>
+                        <Button 
+                            onClick={retake} 
+                            className="rf-btn-default"
+                            style={{ paddingLeft: '2.5rem !important', paddingRight: '2.5rem !important' }}
+                        >
+                            Retake
+                        </Button>
                         <Button type="primary" className="rf-btn-primary" onClick={submitVideo}>
                             Submit
                         </Button>
