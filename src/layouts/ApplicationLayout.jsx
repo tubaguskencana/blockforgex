@@ -34,6 +34,7 @@ const STEP_LEFT = {
       src: step2Image,
       alt: 'Business type illustration',
       notFull: true,
+      center: true
     },
   },
 
@@ -117,14 +118,15 @@ function LeftBottom({ cfg }) {
 
   if (cfg.type === 'image' || cfg.src || cfg.image) {
     const src = cfg.src || cfg.image
-    const notFull = cfg.notFull ? 'max-h-[527px] short:max-h-[400px] w-full' : 'w-full max-h-[435px] short:max-h-[300px]'
+    const notFull = cfg.notFull ? 'max-h-[527px] short:max-h-[400px]' : 'w-full max-h-[435px] short:max-h-[300px]'
+    const center = cfg.center ? 'w-full' : ''
     if (!src) return null
     return (
       <div className="mt-8">
         <img
           src={src}
           alt={cfg.alt || ''}
-          className={`${notFull} h-auto rounded-xl object-contain `}
+          className={`${notFull} h-auto rounded-xl object-contain ${center}`}
           loading="lazy"
         />
       </div>
