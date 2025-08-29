@@ -117,7 +117,7 @@ function LeftBottom({ cfg }) {
 
   if (cfg.type === 'image' || cfg.src || cfg.image) {
     const src = cfg.src || cfg.image
-    const notFull = cfg.notFull ? 'max-h-[527px]' : 'w-full max-h-[435px]'
+    const notFull = cfg.notFull ? 'max-h-[527px] short:max-h-[400px] w-full' : 'w-full max-h-[435px] short:max-h-[300px]'
     if (!src) return null
     return (
       <div className="mt-8">
@@ -212,19 +212,19 @@ export default function ApplicationLayout() {
   const meta = STEP_LEFT[step] ?? STEP_LEFT[1]
 
   return (
-    <div className="h-dvh grid grid-cols-1 lg:grid-cols-2 gap-0 p-0 lg:p-10">
+    <div className="h-dvh grid grid-cols-1 lg:grid-cols-2 gap-0 p-0 lg:py-10 short:py-5">
       {isDesktop && (
         <aside className="bg-[#F9F9FD] rounded-l-2xl">
-          <div className="min-h-full p-10 flex flex-col justify-between">
+          <div className="min-h-full p-10 flex flex-col justify-between short:p-5">
             <div>
-              <div className="flex items-center gap-2 mb-8 shrink-0">
+              <div className="flex items-center gap-2 mb-8 shrink-0 short:mb-4">
                 <img src={logo} alt="Blockforgex" />
               </div>
 
-              <div className="max-w-xl">
+              <div>
                 <Title
                   level={2}
-                  className="!text-[40px] !leading-[48px] !font-semibold !tracking-normal md:!w-[580px] overflow-hidden !mb-2"
+                  className="!text-[40px] !leading-[48px] !font-semibold !tracking-normal overflow-hidden !mb-2"
                 >
                   {meta.title}
                 </Title>
@@ -238,7 +238,7 @@ export default function ApplicationLayout() {
       )}
 
       <main className="bg-white rounded-r-2xl">
-        <div className="min-h-full p-5 lg:p-10">
+        <div className="min-h-full p-5 lg:p-10 short:p-5">
           <Outlet context={{ leftMeta: meta }} />
         </div>
       </main>

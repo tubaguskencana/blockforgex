@@ -61,7 +61,7 @@ export default function StepPage({ total = 7 }) {
     }, [n])
 
     return (
-        <section className="min-h-[calc(90vh-80px)] flex flex-col">
+        <section className="min-h-[calc(100vh-80px)] flex flex-col">
             {!isDesktop && (
                 <div className="flex items-center justify-between mb-8">
                     <img src={logo} alt="Blockforgex" className="h-11" />

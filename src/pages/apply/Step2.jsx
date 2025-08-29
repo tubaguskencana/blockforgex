@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { upsert } from '../../store/appSlice'
 import { selectApp } from '../../store'
 import { useEffect } from 'react'
-import { InboxOutlined, ApartmentOutlined } from '@ant-design/icons' 
+import { Briefcase07Icon } from 'hugeicons-react'
+import { WorkflowSquare08Icon } from 'hugeicons-react'
 
 export default function Step2({ onNext, setSubmitter }) {
     const dispatch = useDispatch()
@@ -47,13 +48,10 @@ export default function Step2({ onNext, setSubmitter }) {
           "
                             >
                                 <div className="flex items-start gap-3">
-                                    {/* ICON KIRI */}
                                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#E6E6E6] bg-[#F4F4FB]">
-                                        {/* ganti ikonmu sendiri */}
-                                        <span className="text-xl">👜</span>
+                                        <Briefcase07Icon />
                                     </div>
 
-                                    {/* TEKS TENGAH */}
                                     <div className="flex-1">
                                         <div className="flex items-center justify-between">
                                             <div className="font-semibold text-[#4F46E5] leading-[1.2]">
@@ -80,7 +78,7 @@ export default function Step2({ onNext, setSubmitter }) {
                             >
                                 <div className="flex items-start gap-3">
                                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#E6E6E6] bg-[#F4F4FB]">
-                                        <span className="text-xl">🏢</span>
+                                        <WorkflowSquare08Icon />
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center justify-between">

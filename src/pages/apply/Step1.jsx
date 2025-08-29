@@ -58,7 +58,7 @@ export default function Step1({ onNext, setSubmitter }) {
           { type: 'email', message: 'Invalid email' },
         ]}
       >
-        <Input className="rf-input" placeholder="Enter your email..." />
+        <Input className="rf-input !h-40" placeholder="Enter your email..." />
       </Form.Item>
 
 
