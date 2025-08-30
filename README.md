@@ -84,7 +84,3 @@ For production-grade applications, it is recommended to use **TypeScript** with 
 Check out [React + TS Vite Template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for integration with `typescript-eslint`.
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License.
