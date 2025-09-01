@@ -62,7 +62,7 @@ export default function StepPage({ total = 7 }) {
 
     return (
         <section className="short:min-h-[calc(100vh-80px)] min-h-[calc(90dvh-80px)] flex flex-col">
-            <div className="sticky top-0 z-50 bg-white border-b border-gray-200">
+            <div className="sticky top-0 z-50 bg-white">
                 {!isDesktop && (
                     <div className="pb-4">
                         <div className="flex items-center justify-between max-w-7xl mx-auto">
